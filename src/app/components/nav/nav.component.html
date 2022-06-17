@@ -1,0 +1,120 @@
+<mat-toolbar class="toolbar">
+  <div class="toolbar-p1">
+    <button
+      mat-icon-button
+      (click)="drawer.toggle()"
+      class="example-icon"
+      aria-label="icon-button with menu icon"
+    >
+      <mat-icon class="botao-menu">menu</mat-icon>
+    </button>
+  </div>
+
+  <div class="toolbar-p3">
+    <form class="form-findByTag">
+      <mat-form-field ngClass="findByTag" appearance="outline">
+        <mat-icon ngClass="findByTag-icon">search</mat-icon>
+        <input
+          ngClass="findByTag-input"
+          matInput
+          placeholder="Busca por tag"
+          name="alunoTag"
+          type="number"
+          (keyup)="findAlunoByTag()"
+          [(ngModel)]="alunoTag"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="toolbar-p2">
+    <span class="toolbar-p2-text">SISTEMA DE CONTROLE DE ACESSO</span>
+  </div>
+
+  <div class="toolbar-p4">
+    <span> {{ usuarioLogado }} </span>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="icon-button with a menu"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item></button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sideNav" mode="side" opened>
+    <mat-nav-list class="nav-list">
+      <img
+        class="img-logo"
+        src="assets/img/logo.jpg"
+        alt="imagem de navegação"
+      />
+      <a mat-list-item routerLink="home">
+        <i class="material-icons">home</i>
+        home
+      </a>
+      <a mat-list-item routerLink="cursos">
+        <i class="material-icons">account_balance</i>
+        Cursos
+      </a>
+      <a mat-list-item routerLink="alunos">
+        <i class="material-icons">person</i>
+        Alunos
+      </a>
+      <a mat-list-item routerLink="formandos">
+        <i class="material-icons">school</i>
+        Formandos
+      </a>
+      <a mat-list-item routerLink="evadidos">
+        <i class="material-icons">person_outline</i>
+        Evadidos
+      </a>
+      <a mat-list-item routerLink="funcionarios">
+        <i class="material-icons">people</i>
+        Funcionarios
+      </a>
+      <a
+        *ngIf="perfilUsuario == 'ADMIN'"
+        mat-list-item
+        [matMenuTriggerFor]="menuAdmin"
+      >
+        <i class="material-icons">build</i>
+        Admin<mat-icon>keyboard_arrow_right</mat-icon>
+      </a>
+
+      <mat-menu #menuAdmin="matMenu">
+        <button mat-menu-item routerLink="alunos/import">
+          <mat-icon>import_export</mat-icon>Importar alunos
+        </button>
+        <button mat-menu-item routerLink="/usuarios">
+          <mat-icon>supervised_user_circle</mat-icon>Usuarios
+        </button>
+      </mat-menu>
+
+      <a
+        *ngIf="perfilUsuario == 'ADMIN' || perfilUsuario == 'OPERATOR'"
+        mat-list-item
+        routerLink="operacao"
+      >
+        <i class="material-icons">group_work</i>
+        Operação
+      </a>
+
+      <a mat-list-item routerLink="alarmes">
+        <i class="material-icons">report_problem</i>
+        Alarmes
+      </a>
+
+      <a mat-list-item (click)="logoutDialog()">
+        <i class="material-icons">logout</i>
+        Logout
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <router-outlet></router-outlet>
+</mat-drawer-container>

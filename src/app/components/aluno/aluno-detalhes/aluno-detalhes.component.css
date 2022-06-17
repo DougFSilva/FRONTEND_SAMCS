@@ -1,0 +1,178 @@
+.card {
+    margin: 2rem;
+    background-color: rgb(235, 235, 235);
+    min-height: 100vh;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-aluno-nome {
+    color: blueviolet;
+}
+
+.card-aluno-turma {
+    color: red
+}
+
+.card-aluno-idade {
+    font-weight: bold;
+}
+
+.card-aluno-empresa {
+    font-weight: bold;
+}
+
+.button-access-unlock {
+    margin-top: 1em;
+    background-color: forestgreen;
+    color: white;
+    float: right;
+    width: auto;
+}
+
+.button-access-lock {
+    margin-top: 1em;
+    background-color: red;
+    color: white;
+    float: right;
+    width: auto;
+}
+
+.button-more {
+    margin-top: 1em;
+    background-color: blueviolet;
+    color: white;
+    float: right;
+    margin-left: 1em;
+    width: 8rem;
+}
+
+.aluno-foto {
+    height: 10rem;
+    width: 8rem;
+}
+
+
+.mat-tab-icon {
+    color: red;
+}
+
+.card-detalhes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1rem 1rem;
+}
+
+.card-ponto {
+    margin: auto;
+    width: 100%;
+}
+
+.table-ponto {
+    width: 60%;
+    margin: auto;
+}
+
+.list-item-title {
+    color: red;
+    margin-right: 1rem;
+    margin: auto 0 auto 0;
+    display: inline;
+}
+
+.list-item-descricao {
+    color: blue;
+    margin: auto 1rem auto 1rem;
+    display: inline;
+}
+
+.button-editar-tag{
+  width: 15rem;
+}
+
+.table-ocorrencia{
+    width: 100%;
+    max-width: 100%;
+}
+
+.ocorrencia-button-nova{
+
+    float: right;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-column-data {
+    min-width: 10%;
+    max-width: 10%;
+}
+
+.mat-column-tipo {
+    min-width: 15%;
+    max-width: 15%;
+}
+
+.mat-column-registrado_por {
+    min-width: 14%;
+    max-width: 14%;
+}
+
+.mat-column-descri--o,
+.mat-cell,
+.cdk-column-descri--o {
+    min-width: 40%;
+    max-width: 40%;
+}
+
+.mat-column-bloqueio {
+    min-width: 7%;
+    max-width: 7%;
+
+}
+
+.mat-column-data {
+    width: 20%;
+}
+
+.mat-column-semestre {
+    width: 25%;
+}
+
+.mat-column-recibo {
+    width: 25%;
+}
+
+.mat-column-valor {
+    width: 25%;
+}
+
+.mat-column-acao {
+    width: 5%;
+}
+
+.table-icon-edit {
+    max-width: 2em;
+    min-width: 2em;
+    transform: scale(0.8);
+    color: blueviolet;
+    cursor: pointer;
+    display: inline;
+
+}
+
+.table-icon-delete {
+    max-width: 2em;
+    min-width: 2em;
+    transform: scale(0.8);
+    color: red;
+    cursor: pointer;
+    display: inline;
+    margin-left: .4em;
+}

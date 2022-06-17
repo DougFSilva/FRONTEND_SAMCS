@@ -1,0 +1,106 @@
+.container {
+  margin: 1rem
+}
+
+h1 {
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  color: blueviolet
+}
+
+.grid-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-tile-value {
+  font-size: 50px;
+}
+
+.charts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.alunos-sexo {
+  margin-top: 1rem;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alunos-cidade {
+  margin-top: 1rem;
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alunos-curso {
+  margin-top: 1rem;
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alunos-empresa {
+  margin-top: 1rem;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alunos-idade {
+  margin-top: 1rem auto 0 auto;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alunos-aniversariantes {
+  margin-top: 1rem auto 0 auto;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  margin-top: 2rem;
+  font-weight: bold;
+}
+
+
+.alunos-aniversariantes-tabela {
+  width: 100%;
+}
+
+.mat-column-curso {
+  width: 35%;
+}
+
+.mat-column-turma {
+  width: 15%;
+}
+
+.mat-column-nome {
+  width: 40%;
+}
+
+.mat-column-idade {
+  width: 10%;
+}

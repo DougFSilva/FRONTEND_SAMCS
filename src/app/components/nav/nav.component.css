@@ -1,0 +1,97 @@
+.toolbar {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    height: 2.5rem;
+    background-color: lightslategrey;
+}
+
+.toolbar-p1 {
+    align-items: center;
+    float: left;
+    width: 4%;
+}
+
+.toolbar-p2 {
+
+    display: flex;
+    color: white;
+    align-items: center;
+    width: 46%;
+}
+
+.toolbar-p3 {
+    display: inline;
+    color: white;
+    flex-direction: row;
+    width: 30%;
+}
+
+.toolbar-p4 {
+    float: right;
+    display: flex;
+    align-self: flex-end;
+    justify-content: flex-end;
+    color: white;
+    align-items: center;
+    width: 20%;
+}
+
+.botao-menu {
+    color: white;
+    transform: scale(1.5);
+
+}
+
+.findByTag {
+    display: flex;
+    flex-direction: row;
+    color: white;
+
+}
+
+.findByTag-icon {
+    padding-top: .4em;
+    margin-right: .2em;
+}
+
+.findByTag-input {
+    color: white;
+    width: 10em;
+
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.container {
+    height: 100%;
+}
+
+.sideNav {
+    width: 13rem;
+    color: white;
+    background-color: slategray;
+}
+
+.img-logo {
+    width: 90%;
+    height: auto;
+    margin-left: .6rem;
+
+}
+
+.sideNav a {
+    color: white;
+}
+
+.sideNav i {
+    margin-right: .9rem;
+}

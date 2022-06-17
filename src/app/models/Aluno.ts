@@ -1,0 +1,23 @@
+export interface Aluno {
+  id: any,
+  matricula: number,
+  dataMatricula:string,
+  dataCriacao: Date,
+  turma: any,
+  numeroTurma: number,
+  curso: string,
+  nome: string,
+  sexo: string,
+  idade: any,
+  cidade: string,
+  rg: string,
+  dataNascimento: string,
+  email: string,
+  telefone: string,
+  desbloqueioTemporario: boolean,
+  entradaSaida: string,
+  status: string,
+  empresa: string,
+  tag: number,
+  foto: any
+}

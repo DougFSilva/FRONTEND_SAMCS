@@ -1,0 +1,396 @@
+<div class="container">
+  <mat-card class="card mat-elevation-z8">
+    <div class="card-header">
+      <mat-card-title-group>
+        <mat-card-title ngClass="card-aluno-nome"
+          >{{ aluno.nome }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          <h2 class="card-aluno-turma">{{ aluno.turma }}</h2>
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          <h1 class="card-aluno-idade">{{ aluno.idade }} Anos</h1>
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          <h2 class="card-aluno-empresa">Empresa: {{ aluno.empresa }}</h2>
+        </mat-card-subtitle>
+        <mat-card-subtitle *ngIf="bloqOcorrencia > 0">
+          <h2 [ngStyle]="{ color: 'red' }">
+            <mat-icon [ngStyle]="{ color: 'red' }">lock</mat-icon>BLOQUEADO
+          </h2>
+        </mat-card-subtitle>
+        <img class="aluno-foto" mat-card-lg-image [src]="aluno.foto" />
+      </mat-card-title-group>
+      <div>
+        <button
+          class="button-more mat-elevation-z8"
+          mat-raised-button
+          [matMenuTriggerFor]="menu"
+        >
+          Opções<mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button routerLink="/aluno/{{ aluno.id }}/update" mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button routerLink="/aluno/{{ aluno.id }}/foto" mat-menu-item>
+            <mat-icon>photo</mat-icon>
+            <span>Foto</span>
+          </button>
+          <button (click)="crachaDialog()" mat-menu-item>
+            <mat-icon>contacts</mat-icon>
+            <span>Crachá</span>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="menuStatus">
+            <mat-icon>add</mat-icon>
+            <span>Status</span>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="menuSolicitar">
+            <mat-icon>arrow_upward</mat-icon>
+            <span>Solicitar</span>
+          </button>
+          <button (click)="deleteByIdDialog()" mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Deletar</span>
+          </button>
+        </mat-menu>
+
+        <mat-menu #menuStatus="matMenu">
+          <button
+            *ngIf="aluno.status != 'FORMANDO'"
+            (click)="updateStatusByIdDialog('FORMANDO')"
+            mat-menu-item
+          >
+            <mat-icon>school</mat-icon>
+            <span>Formar</span>
+          </button>
+          <button
+            *ngIf="aluno.status != 'EVADIDO'"
+            (click)="updateStatusByIdDialog('EVADIDO')"
+            mat-menu-item
+          >
+            <mat-icon>person_outline</mat-icon>
+            <span>Evadir</span>
+          </button>
+        </mat-menu>
+
+        <mat-menu #menuSolicitar="matMenu">
+          <button mat-menu-item (click)="solicitarCrachaDialog()">
+            <mat-icon>contacts</mat-icon>
+            <span>Impressão de crachá</span>
+          </button>
+        </mat-menu>
+        <button
+          *ngIf="
+            aluno.desbloqueioTemporario == false &&
+            aluno.status != 'EVADIDO' &&
+            aluno.status != 'FORMANDO'
+          "
+          class="button-access-unlock mat-elevation-z8"
+          (click)="updateDesbloqueioDialog(true)"
+          mat-raised-button
+        >
+          Liberar acesso temporário
+        </button>
+        <button
+          *ngIf="
+            aluno.desbloqueioTemporario == true &&
+            aluno.status != 'EVADIDO' &&
+            aluno.status != 'FORMANDO'
+          "
+          class="button-access-lock mat-elevation-z8"
+          (click)="updateDesbloqueioDialog(false)"
+          mat-raised-button
+        >
+          Bloquear acesso temporário
+        </button>
+      </div>
+    </div>
+
+    <mat-card-content>
+      <mat-tab-group mat-align-tabs="start">
+        <mat-tab ngClass="mat-tab">
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-tab-icon">assignment_ind</mat-icon>
+            Detalhes
+          </ng-template>
+          <mat-card ngClass="card-detalhes">
+            <div>
+              <mat-list>
+                <mat-list-item ngClass="list-item">
+                  <h3 class="list-item-title">NOME :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.nome }}</h3>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                  <h3 class="list-item-title">TURMA :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.turma }}</h3>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                  <h3 class="list-item-title">EMPRESA :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.empresa }}</h3>
+                  <mat-icon>business</mat-icon>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                  <h3 class="list-item-title">IDADE :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.idade }}</h3>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                  <h3 class="list-item-title">RG :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.rg }}</h3>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                  <h3 class="list-item-title">TELEFONE :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.telefone }}</h3>
+                  <mat-icon>phone</mat-icon>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                  <h3 class="list-item-title">E-MAIL :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.email }}</h3>
+                  <mat-icon>email</mat-icon>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
+            </div>
+            <div>
+              <mat-list>
+                <mat-list-item ngClass="list-item">
+                  <h3 class="list-item-title">DATA DE NASCIMENTO :</h3>
+                  <h3 ngClass="list-item-descricao">
+                    {{ aluno.dataNascimento | date: "dd/MM/yyyy" }}
+                  </h3>
+                  <mat-icon>date_range</mat-icon>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item ngClass="list-item">
+                  <h3 class="list-item-title">CIDADE :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.cidade }}</h3>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item ngClass="list-item">
+                  <h3 class="list-item-title">TAG:</h3>
+                  <mat-form-field
+                    class="list-item-descricao"
+                    appearance="legacy"
+                  >
+                    <input
+                      placeholder="Para eliminar tag, digitar 0"
+                      [(ngModel)]="aluno.tag"
+                      matInput
+                      name="tag"
+                      type="text"
+                      [formControl]="tag"
+                      required
+                    />
+                  </mat-form-field>
+                  <mat-icon>credit_card</mat-icon>
+                  <button
+                    class="button-editar-tag"
+                    [disabled]="!validaCampos()"
+                    mat-raised-button
+                    color="primary"
+                    (click)="updateTagDialog()"
+                  >
+                    <mat-icon>edit</mat-icon>Editar Tag
+                  </button>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                  <h3 class="list-item-title">MATRICULA :</h3>
+                  <h3 ngClass="list-item-descricao">{{ aluno.matricula }}</h3>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                  <h3 class="list-item-title">DATA DA MATRÍCULA :</h3>
+                  <h3 ngClass="list-item-descricao">
+                    {{ aluno.dataMatricula | date: "dd/MM/yyyy" }}
+                  </h3>
+                  <mat-icon>date_range</mat-icon>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
+            </div>
+          </mat-card>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-tab-icon">alarm</mat-icon>
+            Ponto
+          </ng-template>
+          <mat-card class="card-ponto">
+            <button mat-raised-button color="primary" (click)="pontoToPdf()">
+              <mat-icon>picture_as_pdf</mat-icon> Relatório
+            </button>
+            <mat-form-field appearance="standard">
+              <mat-label>Filtro</mat-label>
+              <input
+                matInput
+                (keyup)="applyFilterPonto($event)"
+                placeholder="Ex. ium"
+                #input
+              />
+            </mat-form-field>
+
+            <table
+              mat-table
+              [dataSource]="dataSourcePonto"
+              class="table-ponto mat-elevation-z8"
+            >
+              <ng-container style="margin-left: 1em" matColumnDef="data">
+                <th mat-header-cell *matHeaderCellDef>Data</th>
+                <td mat-cell *matCellDef="let element">{{ element.data }}</td>
+              </ng-container>
+
+              <ng-container style="margin-left: 1em" matColumnDef="horario">
+                <th mat-header-cell *matHeaderCellDef>Horario</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.horario }}
+                </td>
+              </ng-container>
+
+              <ng-container style="margin-left: 1rem" matColumnDef="acao">
+                <th mat-header-cell *matHeaderCellDef>Ação</th>
+                <td mat-cell *matCellDef="let element">{{ element.acao }}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsPonto"></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumnsPonto"
+              ></tr>
+
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">
+                  Sem dados para apresentar "{{ input.value }}"
+                </td>
+              </tr>
+            </table>
+          </mat-card>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-tab-icon">assignment</mat-icon>
+            <span
+              *ngIf="bloqOcorrencia > 0; else elseBlock"
+              [matBadge]="bloqOcorrencia"
+              matBadgeColor="warn"
+              >Ocorrência</span
+            >
+            <ng-template #elseBlock>Ocorrência</ng-template>
+          </ng-template>
+          <mat-card>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="ocorrenciaToPdf()"
+            >
+              <mat-icon>picture_as_pdf</mat-icon> Relatório
+            </button>
+            <button
+              routerLink="/aluno/{{ aluno.id }}/ocorrencia/create"
+              class="ocorrencia-button-nova mat-elevation-z8"
+              mat-flat-button
+              color="primary"
+            >
+              <mat-icon>add</mat-icon>Nova ocorrência
+            </button>
+            <mat-form-field appearance="standard">
+              <mat-label>Filtro</mat-label>
+              <input
+                matInput
+                (keyup)="applyFilter($event)"
+                placeholder="Ex. ium"
+                #input
+              />
+            </mat-form-field>
+
+            <table
+              mat-table
+              [dataSource]="dataSourceOcorrencia"
+              class="table-ocorrencia mat-elevation-z8"
+            >
+              <ng-container style="margin-left: 1em" matColumnDef="data">
+                <th mat-header-cell *matHeaderCellDef>Data</th>
+                <td mat-cell *matCellDef="let element">{{ element.data }}</td>
+              </ng-container>
+
+              <ng-container style="margin-left: 1rem" matColumnDef="tipo">
+                <th mat-header-cell *matHeaderCellDef>Tipo</th>
+                <td mat-cell *matCellDef="let element">{{ element.tipo }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="registrado_por">
+                <th mat-header-cell *matHeaderCellDef>Registrado por</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.registrador }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="descrição">
+                <th mat-header-cell *matHeaderCellDef>Descrição</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.descricao }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="bloqueio">
+                <th mat-header-cell *matHeaderCellDef>Bloqueio</th>
+                <td mat-cell *matCellDef="let element">
+                  <span *ngIf="element.bloqueio == true; else elseBlock">
+                    <mat-icon [ngStyle]="{ color: 'red' }">lock</mat-icon>
+                  </span>
+                  <ng-template #elseBlock
+                    ><mat-icon [ngStyle]="{ color: 'green' }"
+                      >lock_open</mat-icon
+                    ></ng-template
+                  >
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="acao">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-icon
+                    class="table-icon-edit"
+                    routerLink="/ocorrencia/{{ element.id }}/update"
+                    >edit</mat-icon
+                  >
+                  <mat-icon
+                    class="table-icon-delete"
+                    (click)="OcorrenciaDeleteDialog(element.id)"
+                    >delete_forever</mat-icon
+                  >
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">
+                  Sem dados para apresentar "{{ input.value }}"
+                </td>
+              </tr>
+            </table>
+          </mat-card>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

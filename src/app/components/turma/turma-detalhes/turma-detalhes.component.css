@@ -1,0 +1,19 @@
+.container {
+    width: 30rem;
+    margin: 2rem auto 3rem auto;
+}
+
+.list-title {
+    color: blueviolet;
+    font-weight: bold;
+    text-align: center;
+}
+
+.item-list-chave {
+    color: blueviolet;
+    margin-right: 1rem;
+}
+
+.item-list-valor {
+    color: red;
+}

@@ -1,0 +1,29 @@
+.container {
+    width: 27rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.title {
+    font-weight: bold;
+    color: blueviolet;
+    text-align: center;
+}
+
+.icon {
+    transform: scale(2);
+    color: blueviolet;
+    margin: 1rem auto 1rem auto;
+}
+
+.input-image {
+    width: 100%;
+    margin: 1rem;
+    color: blueviolet;
+}
+
+.button-voltar {
+    width: 100%;
+}
