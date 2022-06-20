@@ -28,6 +28,7 @@ export class AlunoImportComponent implements OnInit {
     "matricula",
     "dataMatricula",
     "empresa",
+    "sexo"
   ];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   totalAlunos: number = 0;
